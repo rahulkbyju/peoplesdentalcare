@@ -1,0 +1,1457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dental Clinic Hero</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #007bff;
+            text-decoration: none;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #2c3e50;
+            font-size: 1rem;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #007bff;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #007bff;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .nav-toggle span {
+            width: 25px;
+            height: 3px;
+            background: #2c3e50;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .nav-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .nav-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        /* Mobile Menu */
+        @media (max-width: 768px) {
+            .nav-toggle {
+                display: flex;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 70px;
+                right: -100%;
+                width: 280px;
+                height: calc(100vh - 70px);
+                background: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(10px);
+                flex-direction: column;
+                gap: 0;
+                padding: 2rem 0;
+                box-shadow: -2px 0 15px rgba(0, 0, 0, 0.1);
+                transition: right 0.3s ease;
+            }
+
+            .nav-menu.active {
+                right: 0;
+            }
+
+            .nav-menu li {
+                width: 100%;
+                text-align: center;
+                padding: 1rem 0;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            }
+
+            .nav-link::after {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-container {
+                padding: 1rem 1.5rem;
+            }
+
+            .nav-logo {
+                font-size: 1.3rem;
+            }
+        }
+
+        .hero-section {
+            position: relative;
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-image: url('hero-background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0, 123, 255, 0.15), rgba(0, 200, 255, 0.1));
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 2rem;
+            max-width: 800px;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            text-shadow: 
+                2px 2px 4px rgba(255, 255, 255, 0.8),
+                -1px -1px 2px rgba(0, 0, 0, 0.1),
+                0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .hero-content p {
+            font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+            color: #2c3e50;
+            margin-bottom: 2.5rem;
+            line-height: 1.6;
+            text-shadow: 
+                1px 1px 3px rgba(255, 255, 255, 0.9),
+                -1px -1px 1px rgba(0, 0, 0, 0.05),
+                0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #ffffff;
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            border: none;
+            border-radius: 50px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 
+                0 4px 15px rgba(0, 123, 255, 0.4),
+                0 2px 4px rgba(0, 0, 0, 0.2);
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 
+                0 6px 25px rgba(0, 123, 255, 0.5),
+                0 4px 8px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(135deg, #0056b3, #003d82);
+        }
+
+        .cta-button:active {
+            transform: translateY(-1px);
+            box-shadow: 
+                0 3px 15px rgba(0, 123, 255, 0.4),
+                0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-section {
+                min-height: 80vh;
+            }
+
+            .hero-content {
+                padding: 1.5rem;
+            }
+
+            .hero-content h1 {
+                margin-bottom: 1rem;
+            }
+
+            .hero-content p {
+                margin-bottom: 2rem;
+            }
+
+            .cta-button {
+                padding: 0.9rem 2rem;
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-section {
+                min-height: 70vh;
+            }
+
+            .hero-content {
+                padding: 1rem;
+            }
+
+            .cta-button {
+                padding: 0.8rem 1.8rem;
+                font-size: 0.95rem;
+            }
+        }
+
+        /* Our Team Section */
+        .team-section {
+            padding: 5rem 2rem;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+
+        .team-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .section-header p {
+            font-size: 1.1rem;
+            color: #6c757d;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .team-category {
+            margin-bottom: 4rem;
+        }
+
+        .category-title {
+            font-size: 1.5rem;
+            color: #007bff;
+            margin-bottom: 2rem;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            justify-items: center;
+        }
+
+        .team-grid.main-doctors {
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .doctor-card {
+            background: #ffffff;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            width: 100%;
+            max-width: 350px;
+        }
+
+        .doctor-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 123, 255, 0.2);
+        }
+
+        .doctor-image {
+            width: 100%;
+            height: 300px;
+            background: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .doctor-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .doctor-image::before {
+            content: '👨‍⚕️';
+            font-size: 8rem;
+            opacity: 0.3;
+            position: absolute;
+        }
+
+        .doctor-image:has(img)::before {
+            content: none;
+        }
+
+        .doctor-info {
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .doctor-name {
+            font-size: 1.4rem;
+            color: #2c3e50;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .doctor-specialty {
+            font-size: 1rem;
+            color: #007bff;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .doctor-credentials {
+            font-size: 0.9rem;
+            color: #6c757d;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .doctor-experience {
+            font-size: 0.85rem;
+            color: #495057;
+            background: #f8f9fa;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .doctor-description {
+            font-size: 0.95rem;
+            color: #6c757d;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .doctor-contact {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .contact-btn {
+            padding: 0.6rem 1.2rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid #007bff;
+        }
+
+        .contact-btn.primary {
+            background: #007bff;
+            color: #ffffff;
+        }
+
+        .contact-btn.primary:hover {
+            background: #0056b3;
+            border-color: #0056b3;
+            transform: scale(1.05);
+        }
+
+        .contact-btn.secondary {
+            background: transparent;
+            color: #007bff;
+        }
+
+        .contact-btn.secondary:hover {
+            background: #007bff;
+            color: #ffffff;
+            transform: scale(1.05);
+        }
+
+        /* Responsive Design for Team Section */
+        @media (max-width: 768px) {
+            .team-section {
+                padding: 3rem 1.5rem;
+            }
+
+            .team-grid,
+            .team-grid.main-doctors {
+                grid-template-columns: 1fr;
+                max-width: 350px;
+                margin: 0 auto;
+            }
+
+            .doctor-image {
+                height: 250px;
+            }
+
+            .doctor-image::before {
+                font-size: 6rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .team-section {
+                padding: 2.5rem 1rem;
+            }
+
+            .section-header h2 {
+                font-size: 1.8rem;
+            }
+
+            .doctor-card {
+                max-width: 100%;
+            }
+        }
+
+        /* Testimonials Section */
+        .testimonials-section {
+            padding: 5rem 2rem;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+
+        .testimonials-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .testimonials-list {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .testimonial-card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            display: flex;
+            gap: 2rem;
+            align-items: flex-start;
+        }
+
+        .testimonial-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px rgba(0, 123, 255, 0.2);
+        }
+
+        .testimonial-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 4px solid #007bff;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-size: 3rem;
+        }
+
+        .testimonial-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .testimonial-content {
+            flex: 1;
+        }
+
+        .testimonial-content h4 {
+            font-size: 1.3rem;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .testimonial-rating {
+            color: #ffc107;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            display: flex;
+            gap: 0.2rem;
+        }
+
+        .testimonial-message {
+            font-size: 1rem;
+            color: #495057;
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* Responsive Design for Testimonials */
+        @media (max-width: 768px) {
+            .testimonials-section {
+                padding: 3rem 1.5rem;
+            }
+
+            .testimonial-card {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                padding: 1.5rem;
+            }
+
+            .testimonial-card:hover {
+                transform: translateY(-5px);
+            }
+
+            .testimonial-avatar {
+                width: 80px;
+                height: 80px;
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .testimonials-section {
+                padding: 2.5rem 1rem;
+            }
+
+            .testimonial-card {
+                padding: 1.2rem;
+            }
+
+            .testimonial-avatar {
+                width: 70px;
+                height: 70px;
+                font-size: 2rem;
+            }
+
+            .testimonial-content h4 {
+                font-size: 1.1rem;
+            }
+
+            .testimonial-message {
+                font-size: 0.95rem;
+            }
+        }
+
+        /* Book Appointment Section */
+        .book-appointment-section {
+            padding: 5rem 2rem;
+            background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+            color: #ffffff;
+        }
+
+        .book-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .book-container .section-header h2 {
+            color: #ffffff;
+        }
+
+        .book-container .section-header p {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .appointment-form {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            margin-top: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #ffffff;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            font-size: 1rem;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.9);
+            color: #2c3e50;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #ffffff;
+            background: #ffffff;
+            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.2);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #007bff;
+            background: #ffffff;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.3);
+            background: #f8f9fa;
+        }
+
+        .submit-btn:active {
+            transform: translateY(-1px);
+        }
+
+        /* Footer */
+        .footer {
+            background: #1a1a1a;
+            color: #ffffff;
+            padding: 3rem 2rem 1.5rem 2rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: #007bff;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: #b0b0b0;
+            line-height: 1.8;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #007bff;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-icon {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            color: #ffffff;
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            background: #007bff;
+            transform: translateY(-5px);
+        }
+
+        .location-info {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .location-info span {
+            font-size: 1.2rem;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design for Book Appointment & Footer */
+        @media (max-width: 768px) {
+            .book-appointment-section {
+                padding: 3rem 1.5rem;
+            }
+
+            .appointment-form {
+                padding: 2rem 1.5rem;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .footer {
+                padding: 2rem 1.5rem 1rem 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .appointment-form {
+                padding: 1.5rem 1rem;
+            }
+
+            .form-group input,
+            .form-group textarea {
+                padding: 0.8rem;
+            }
+        }
+
+        /* Blog Section */
+        .blog-section {
+            padding: 5rem 2rem;
+            background: #ffffff;
+        }
+
+        .blog-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .blog-card {
+            background: #ffffff;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 123, 255, 0.2);
+            border-color: #007bff;
+        }
+
+        .blog-image {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .blog-image::before {
+            content: '📝';
+            font-size: 6rem;
+            opacity: 0.3;
+        }
+
+        .blog-content {
+            padding: 2rem;
+        }
+
+        .blog-title {
+            font-size: 1.5rem;
+            color: #2c3e50;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        .blog-description {
+            font-size: 1rem;
+            color: #6c757d;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .blog-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+
+        .blog-date {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .blog-link {
+            display: inline-block;
+            padding: 0.8rem 1.8rem;
+            background: #007bff;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .blog-link:hover {
+            background: #0056b3;
+            transform: translateX(5px);
+        }
+
+        /* Responsive Design for Blog Section */
+        @media (max-width: 768px) {
+            .blog-section {
+                padding: 3rem 1.5rem;
+            }
+
+            .blog-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .blog-image {
+                height: 200px;
+            }
+
+            .blog-content {
+                padding: 1.5rem;
+            }
+
+            .blog-title {
+                font-size: 1.3rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .blog-section {
+                padding: 2.5rem 1rem;
+            }
+
+            .blog-content {
+                padding: 1.2rem;
+            }
+
+            .blog-meta {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+        }
+
+        /* Scroll Animations */
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .scroll-animate.animate-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .scroll-animate-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .scroll-animate-left.animate-in {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .scroll-animate-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .scroll-animate-right.animate-in {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .scroll-animate-scale {
+            opacity: 0;
+            transform: scale(0.9);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .scroll-animate-scale.animate-in {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Stagger animation for cards */
+        .stagger-animate {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .stagger-animate.animate-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+
+    <!-- Fontawesome - for social media icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">People's Dental Care</a>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#team" class="nav-link">Our Team</a></li>
+                <li><a href="#testimonials" class="nav-link">Testimonials</a></li>
+                <li><a href="#courses" class="nav-link">Courses</a></li>
+                <li><a href="#contact" class="nav-link">Contact Us</a></li>
+            </ul>
+            <div class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section scroll-animate-scale">
+        <div class="hero-content">
+            <h1>Your Smile, Our Priority</h1>
+            <p>Experience exceptional dental care with our expert team. Advanced treatments in a comfortable, welcoming environment.</p>
+            <a href="#book" class="cta-button">Book Appointment</a>
+        </div>
+    </section>
+
+    <!-- Our Team Section -->
+    <section class="team-section" id="team">
+        <div class="team-container">
+            <div class="section-header">
+                <h2>Meet Our Expert Team</h2>
+                <p>Dedicated professionals committed to providing you with the best dental care experience</p>
+            </div>
+
+            <!-- Main Doctors -->
+            <div class="team-category">
+                <h3 class="category-title">Our Principal Dentists</h3>
+                <div class="team-grid main-doctors">
+                    <!-- Dr. Ajith -->
+                    <div class="doctor-card">
+                        <div class="doctor-image">
+                            <img src="dr-ajith1.jpg" alt="Dr. Ajith">
+                        </div>
+                        <div class="doctor-info">
+                            <h3 class="doctor-name">Dr. Ajith Subramanian</h3>
+                            <p class="doctor-specialty">Chief Dental Officer & Cosmetic Dentistry</p>
+                            <p class="doctor-credentials">BDS, MDS (Prosthodontics), Fellowship in Cosmetic Dentistry</p>
+                            <span class="doctor-experience">15+ Years Experience</span>
+                            <p class="doctor-description">Specializes in smile makeovers, veneers, and advanced cosmetic procedures. Passionate about creating beautiful, healthy smiles.</p>
+                            <div class="doctor-contact">
+                                <a href="#book" class="contact-btn primary">Book Appointment</a>
+                                <a href="#profile" class="contact-btn secondary">View Profile</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End of Dr. Ajith card-->
+
+                    <!-- Dr Deepthy -->
+                    <div class="doctor-card">
+                        <div class="doctor-image">
+                            <img src="dr-deepthy4.jpg" alt="Dr. Ajith">
+                        </div>
+                        <div class="doctor-info">
+                            <h3 class="doctor-name">Dr. Deepthy K.P</h3>
+                            <p class="doctor-specialty">Chief Dental Officer & Cosmetic Dentistry</p>
+                            <p class="doctor-credentials">BDS, MDS (Prosthodontics), Fellowship in Cosmetic Dentistry</p>
+                            <span class="doctor-experience">15+ Years Experience</span>
+                            <p class="doctor-description">Specializes in smile makeovers, veneers, and advanced cosmetic procedures. Passionate about creating beautiful, healthy smiles.</p>
+                            <div class="doctor-contact">
+                                <a href="#book" class="contact-btn primary">Book Appointment</a>
+                                <a href="#profile" class="contact-btn secondary">View Profile</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End of Dr. Deepthy -->
+
+                </div>
+            </div>
+
+            <!-- Visiting Doctors -->
+            <div class="team-category">
+                <h3 class="category-title">Our Visiting Specialists</h3>
+                <div class="team-grid">
+                    <div class="doctor-card">
+                        <div class="doctor-image">
+                            <img src="dr-deepthy4.jpg" alt="Dr. Ajith">
+                        </div>
+                        <div class="doctor-info">
+                            <h3 class="doctor-name">Dr. Mohammed Ameen</h3>
+                            <p class="doctor-specialty">Orthodontist</p>
+                            <p class="doctor-credentials">MDS (Orthodontics)</p>
+                            <span class="doctor-experience">8+ Years Experience</span>
+                            <p class="doctor-description">Specializes in braces, Invisalign, and corrective orthodontic treatments for all ages.</p>
+                            <div class="doctor-contact">
+                                <a href="#book" class="contact-btn primary">Book Appointment</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="doctor-card">
+                        <div class="doctor-image">
+                            <img src="dr-deepthy4.jpg" alt="Dr. Ajith">
+                        </div>
+                        <div class="doctor-info">
+                            <h3 class="doctor-name">Dr. Aravind Prasad</h3>
+                            <p class="doctor-specialty">Pediatric Dentist</p>
+                            <p class="doctor-credentials">MDS (Pedodontics)</p>
+                            <span class="doctor-experience">7+ Years Experience</span>
+                            <p class="doctor-description">Caring and patient-focused specialist in children's dental health and preventive care.</p>
+                            <div class="doctor-contact">
+                                <a href="#book" class="contact-btn primary">Book Appointment</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="doctor-card">
+                        <div class="doctor-image">
+                            <img src="dr-deepthy4.jpg" alt="Dr. Ajith">
+                        </div>
+                        <div class="doctor-info">
+                            <h3 class="doctor-name">Dr. Venus Vijayan</h3>
+                            <p class="doctor-specialty">Endodontist</p>
+                            <p class="doctor-credentials">BDS, MDS (Endodontics)</p>
+                            <span class="doctor-experience">8+ Years Experience</span>
+                            <p class="doctor-description">Expert in root canal treatments and saving natural teeth with advanced techniques.</p>
+                            <div class="doctor-contact">
+                                <a href="#book" class="contact-btn primary">Book Appointment</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- End of Team section -->
+
+    <!-- Testimonials -->
+    <section class="testimonials-section" id="testimonials">
+        <div class="testimonials-container">
+            <div class="section-header">
+                <h2>What Our Patients Say</h2>
+                <p>Real experiences from our valued patients who trust us with their dental care</p>
+            </div>
+
+            <div class="testimonials-list">
+                <div class="testimonial-card">
+                    <div class="testimonial-avatar" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                        👨
+                    </div>
+                    <div class="testimonial-content">
+                        <h4>Rahul</h4>
+                        <div class="testimonial-rating">
+                            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                        </div>
+                        <p class="testimonial-message">
+                            Dr. Ajith completely transformed my smile! The entire team is professional, caring, and made me feel comfortable throughout the process. Highly recommended!
+                        </p>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-avatar" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                        👩
+                    </div>
+                    <div class="testimonial-content">
+                        <h4>Arya</h4>
+                        <div class="testimonial-rating">
+                            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                        </div>
+                        <p class="testimonial-message">
+                            I've been coming here for 5 years now and wouldn't go anywhere else. Dr. Deepthy did my dental implants, and they feel just like natural teeth. Amazing experience!
+                        </p>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-avatar" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                        👨
+                    </div>
+                    <div class="testimonial-content">
+                        <h4>Dhanya</h4>
+                        <div class="testimonial-rating">
+                            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                        </div>
+                        <p class="testimonial-message">
+                            As someone who was terrified of dentists, this clinic changed my perspective. They explain everything clearly and are gentle during procedures. Best dental care I've ever received!
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End of Testimonials -->
+
+    <!-- Blog Section -->
+    <section class="blog-section scroll-animate" id="blog">
+        <div class="blog-container">
+            <div class="section-header">
+                <h2>Latest from Our Blog</h2>
+                <p>Stay informed with dental tips, news, and insights from our experts</p>
+            </div>
+
+            <div class="blog-grid">
+                <div class="blog-card">
+                    <!-- 
+                    <div class="blog-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                    </div>
+                -->
+                    <div class="blog-image">
+                        <img src="./smiling-person-clean-teeth.jpg" alt="smiling-person-clean-teeth">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-date">📅 November 15, 2024</span>
+                            <span>5 min read</span>
+                        </div>
+                        <h3 class="blog-title">5 Essential Tips for Maintaining Healthy Teeth</h3>
+                        <p class="blog-description">
+                            Discover five simple yet powerful habits that keep your smile bright and your teeth strong. From daily care routines to professional tips, this quick guide makes dental health easy and achievable for everyone.
+                        </p>
+                        <a href="#" class="blog-link">Read Full Article →</a>
+                    </div>
+                </div>
+
+                <div class="blog-card">
+                    <div class="blog-image">
+                        <img src="./modern-dentistry-technology.jpg" alt="modern-dentistry-technology">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-date">📅 November 10, 2024</span>
+                            <span>7 min read</span>
+                        </div>
+                        <h3 class="blog-title">Understanding Modern Dental Implant Technology</h3>
+                        <p class="blog-description">
+                            Explore how today’s advanced dental implant technology restores smiles with greater precision, comfort, and durability. Learn what makes modern implants a reliable, long-term solution for missing teeth.
+                        </p>
+                        <a href="#" class="blog-link">Read Full Article →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Book Appointment Section -->
+    <section class="book-appointment-section scroll-animate-scale" id="book">
+        <div class="book-container">
+            <div class="section-header">
+                <h2>Book Your Appointment</h2>
+                <p>Schedule your visit today and take the first step towards a healthier smile</p>
+            </div>
+
+            <form class="appointment-form">
+                <div class="form-group">
+                    <label for="name">Full Name *</label>
+                    <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="mobile">Mobile Number *</label>
+                    <input type="tel" id="mobile" name="mobile" placeholder="Enter your mobile number" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="complaint">Complaint / Reason for Visit *</label>
+                    <textarea id="complaint" name="complaint" placeholder="Please describe your dental concern or reason for appointment" required></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">Submit Appointment Request</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer start -->
+    <footer class="footer" id="contact">
+        <div class="footer-container">
+            <!-- About Section -->
+            <div class="footer-section">
+                <h3>People's Dental Care</h3>
+                <p>Your trusted partner in dental health. Providing exceptional care with advanced technology and a compassionate approach.</p>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/peoplesdentalcare" class="social-icon" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="https://www.instagram.com/peoples_dental.care" class="social-icon" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="social-icon" aria-label="Twitter"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#team">Our Team</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#courses">Courses</a></li>
+                    <li><a href="#book">Book Appointment</a></li>
+                </ul>
+            </div>
+
+            <!-- Location & Contact -->
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <div class="location-info">
+                    <span>📍</span>
+                    <p>Ground floor,<br>Panchayath Bus Stand,<br>Kadampazhipuram,<br>Palakkad, Kerala.</p>
+                </div>
+                <div class="location-info">
+                    <span>📞</span>
+                    <p>+91-90611 99572</p>
+                </div>
+                <div class="location-info">
+                    <span>✉️</span>
+                    <p>info@peoplesdentalcare.com</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 Peoples Dental Care. All rights reserved. | Privacy Policy | Terms of Service</p>
+        </div>
+    </footer>
+
+    <!-- Footer end -->
+
+    <script>
+        // Mobile menu toggle
+        const navToggle = document.querySelector('.nav-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+
+        navToggle.addEventListener('click', () => {
+            navToggle.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Close menu when clicking on a link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                navToggle.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-in');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections with scroll animations
+        document.querySelectorAll('.scroll-animate, .scroll-animate-left, .scroll-animate-right, .scroll-animate-scale').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Stagger animation for cards
+        const staggerObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const cards = entry.target.querySelectorAll('.doctor-card, .testimonial-card, .blog-card');
+                    cards.forEach((card, index) => {
+                        card.classList.add('stagger-animate');
+                        setTimeout(() => {
+                            card.classList.add('animate-in');
+                        }, index * 150);
+                    });
+                    staggerObserver.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Observe sections with cards
+        document.querySelectorAll('.team-section, .testimonials-section, .blog-section').forEach(section => {
+            staggerObserver.observe(section);
+        });
+
+        // Form submission handler
+        const appointmentForm = document.querySelector('.appointment-form');
+        appointmentForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const mobile = document.getElementById('mobile').value;
+            const complaint = document.getElementById('complaint').value;
+            
+            // Simple validation
+            if (name && mobile && complaint) {
+                alert(`Thank you, ${name}! Your appointment request has been received. We will contact you at ${mobile} shortly.`);
+                appointmentForm.reset();
+            } else {
+                alert('Please fill in all required fields.');
+            }
+        });
+    </script>
+</body>
+</html>
