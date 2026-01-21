@@ -1356,6 +1356,212 @@
         font-size: 1.2rem;
     }
 }
+
+    /* Our Treatments section */
+    /* Our Treatments Section */
+.treatments-section {
+    padding: 5rem 2rem;
+    background: linear-gradient(135deg, #2c3e50 0%, #1a252f 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.treatments-section::before {
+    content: '';
+    position: absolute;
+    top: -100px;
+    right: -100px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(0, 123, 255, 0.1) 0%, transparent 70%);
+    border-radius: 50%;
+}
+
+.treatments-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+.treatments-section .section-header h2 {
+    color: #ffffff;
+}
+
+.treatments-section .section-header p {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.treatments-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.treatment-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 2.5rem 2rem;
+    text-align: center;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.treatment-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(0, 123, 255, 0.1) 0%, transparent 100%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.treatment-card:hover {
+    transform: translateY(-10px);
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(0, 123, 255, 0.5);
+    box-shadow: 0 15px 40px rgba(0, 123, 255, 0.2);
+}
+
+.treatment-card:hover::before {
+    opacity: 1;
+}
+
+.treatment-icon {
+    width: 70px;
+    height: 70px;
+    margin: 0 auto 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 123, 255, 0.15);
+    border: 2px solid rgba(0, 123, 255, 0.3);
+    border-radius: 15px;
+    color: #007bff;
+    transition: all 0.4s ease;
+    position: relative;
+    z-index: 1;
+}
+
+.treatment-icon svg {
+    width: 35px;
+    height: 35px;
+}
+
+.treatment-card:hover .treatment-icon {
+    background: rgba(0, 123, 255, 0.25);
+    border-color: #007bff;
+    transform: scale(1.1) rotate(5deg);
+}
+
+.treatment-title {
+    font-size: 1.3rem;
+    color: #ffffff;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    line-height: 1.3;
+    position: relative;
+    z-index: 1;
+}
+
+.treatment-description {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.75);
+    line-height: 1.7;
+    position: relative;
+    z-index: 1;
+}
+
+/* Responsive Design */
+@media (max-width: 968px) {
+    .treatments-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .treatment-card {
+        padding: 2rem 1.5rem;
+    }
+
+    .treatment-title {
+        font-size: 1.2rem;
+    }
+
+    .treatment-description {
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .treatments-section {
+        padding: 3rem 1.5rem;
+    }
+
+    .treatments-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .treatment-card {
+        padding: 2rem 1.5rem;
+    }
+
+    .treatment-icon {
+        width: 65px;
+        height: 65px;
+    }
+
+    .treatment-icon svg {
+        width: 32px;
+        height: 32px;
+    }
+}
+
+@media (max-width: 480px) {
+    .treatments-section {
+        padding: 2.5rem 1rem;
+    }
+
+    .treatments-grid {
+        gap: 1.2rem;
+    }
+
+    .treatment-card {
+        padding: 1.8rem 1.2rem;
+    }
+
+    .treatment-icon {
+        width: 60px;
+        height: 60px;
+        margin-bottom: 1.2rem;
+    }
+
+    .treatment-icon svg {
+        width: 30px;
+        height: 30px;
+    }
+
+    .treatment-title {
+        font-size: 1.1rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .treatment-description {
+        font-size: 0.9rem;
+        line-height: 1.6;
+    }
+}
+    /* End of Our Treatments section */
     </style>
 
     <!-- Fontawesome - for social media icons -->
@@ -1588,6 +1794,93 @@
     </section>
 
     <!-- End of Team section -->
+    
+    <!-- Our Treatments -->
+    <!-- Our Treatments Section -->
+<section class="treatments-section" id="treatments">
+    <div class="treatments-container">
+        <div class="section-header">
+            <h2>Our Treatments</h2>
+            <p>Comprehensive dental solutions tailored to your unique needs</p>
+        </div>
+
+        <div class="treatments-grid">
+            <!-- Treatment Card 1 -->
+            <div class="treatment-card">
+                <div class="treatment-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 2L12 8M12 8L8 12M12 8L16 12"></path>
+                        <circle cx="12" cy="17" r="3"></circle>
+                    </svg>
+                </div>
+                <h3 class="treatment-title">Single-Visit Root Canal</h3>
+                <p class="treatment-description">Get rid of tooth pain and save your tooth in just one comfortable appointment.</p>
+            </div>
+
+            <!-- Treatment Card 2 -->
+            <div class="treatment-card">
+                <div class="treatment-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 2C9 2 6 4 6 7C6 10 8 12 12 12C16 12 18 10 18 7C18 4 15 2 12 2Z"></path>
+                        <path d="M12 12C12 12 8 14 8 18C8 20 10 22 12 22C14 22 16 20 16 18C16 14 12 12 12 12Z"></path>
+                    </svg>
+                </div>
+                <h3 class="treatment-title">Smile Makeover with Veneers</h3>
+                <p class="treatment-description">Transform your smile with natural-looking porcelain veneers designed just for you.</p>
+            </div>
+
+            <!-- Treatment Card 3 -->
+            <div class="treatment-card">
+                <div class="treatment-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 3C8 3 5 6 5 10C5 14 8 17 12 17C16 17 19 14 19 10C19 6 16 3 12 3Z"></path>
+                        <circle cx="12" cy="10" r="2"></circle>
+                    </svg>
+                </div>
+                <h3 class="treatment-title">Strong Tooth-Colored Restorations</h3>
+                <p class="treatment-description">Restore damaged teeth with long-lasting, natural-looking restorations that feel like your own.</p>
+            </div>
+
+            <!-- Treatment Card 4 -->
+            <div class="treatment-card">
+                <div class="treatment-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 2L12 10M12 10L8 6M12 10L16 6"></path>
+                        <rect x="6" y="12" width="12" height="10" rx="2"></rect>
+                    </svg>
+                </div>
+                <h3 class="treatment-title">Dental Implants</h3>
+                <p class="treatment-description">Replace missing teeth with strong, permanent solutions that look and function like natural teeth.</p>
+            </div>
+
+            <!-- Treatment Card 5 -->
+            <div class="treatment-card">
+                <div class="treatment-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 2C8 2 5 5 5 9C5 13 8 16 12 16C16 16 19 13 19 9C19 5 16 2 12 2Z"></path>
+                        <path d="M9 10L11 12L15 8"></path>
+                    </svg>
+                </div>
+                <h3 class="treatment-title">Advanced Natural Restorations</h3>
+                <p class="treatment-description">Protect and rebuild your teeth using the latest techniques that mimic natural tooth structure.</p>
+            </div>
+
+            <!-- Treatment Card 6 -->
+            <div class="treatment-card">
+                <div class="treatment-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="8" r="3"></circle>
+                        <path d="M6 21V19C6 16.79 7.79 15 10 15H14C16.21 15 18 16.79 18 19V21"></path>
+                    </svg>
+                </div>
+                <h3 class="treatment-title">Full Mouth & Jaw Joint Care</h3>
+                <p class="treatment-description">Relieve jaw pain and restore comfort, function, and balance to your bite and smile.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- End of Our Treatments section -->
 
     <!-- Testimonials -->
     <section class="testimonials-section" id="testimonials">
