@@ -1562,6 +1562,360 @@
     }
 }
     /* End of Our Treatments section */
+    /* Hero section - trial 2 */
+    /* Updated Hero Section - Refined */
+.hero-section {
+    position: relative;
+    width: 100%;
+    min-height: 85vh;
+    display: flex;
+    align-items: center;
+    background-image: url('hero-background-2.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 5rem 3rem 3rem 3rem;
+    overflow: hidden;
+}
+
+/* Glassy Overlay */
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 0;
+}
+
+/* Decorative gradient blur */
+.hero-section::after {
+    content: '';
+    position: absolute;
+    top: -10%;
+    right: -5%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(0, 123, 255, 0.06) 0%, transparent 70%);
+    border-radius: 50%;
+    z-index: 0;
+}
+
+.hero-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 3rem;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+
+/* Left Content */
+.hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.hero-text-content {
+    max-width: 580px;
+}
+
+.hero-main-heading {
+    font-size: clamp(2.2rem, 4.5vw, 3.8rem);
+    font-weight: 800;
+    color: #1a1a1a;
+    line-height: 1.15;
+    margin-bottom: 1.3rem;
+}
+
+.highlight-text {
+    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    position: relative;
+}
+
+.hero-subheading {
+    font-size: clamp(0.95rem, 1.6vw, 1.15rem);
+    color: #495057;
+    line-height: 1.7;
+    margin-bottom: 2.2rem;
+    font-weight: 400;
+}
+
+.hero-cta-group {
+    display: flex;
+    gap: 1.2rem;
+    margin-bottom: 2.5rem;
+    flex-wrap: wrap;
+}
+
+.hero-cta-primary {
+    display: inline-flex;
+    align-items: center;
+    padding: 1rem 2.2rem;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #ffffff;
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    border: none;
+    border-radius: 50px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0, 123, 255, 0.3);
+}
+
+.hero-cta-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 30px rgba(0, 123, 255, 0.4);
+}
+
+.hero-cta-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 1.8rem;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #007bff;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    border: 2px solid #007bff;
+    border-radius: 50px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.hero-cta-secondary:hover {
+    background: #007bff;
+    color: #ffffff;
+    transform: translateX(5px);
+}
+
+.hero-cta-secondary svg {
+    transition: transform 0.3s ease;
+}
+
+.hero-cta-secondary:hover svg {
+    transform: translateX(5px);
+}
+
+/* Stats Section */
+.hero-stats {
+    display: flex;
+    align-items: center;
+    gap: 1.8rem;
+    padding: 1.8rem 0 0 0;
+}
+
+.stat-item {
+    text-align: left;
+}
+
+.stat-number {
+    font-size: clamp(1.8rem, 2.8vw, 2.5rem);
+    font-weight: 800;
+    color: #007bff;
+    margin-bottom: 0.3rem;
+    line-height: 1;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: #6c757d;
+    font-weight: 500;
+}
+
+.stat-divider {
+    width: 2px;
+    height: 45px;
+    background: linear-gradient(to bottom, transparent, #dee2e6, transparent);
+}
+
+/* Right Content - Image */
+.hero-right {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-image-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 420px;
+}
+
+.hero-image-circle {
+    position: relative;
+    width: 100%;
+    padding-bottom: 100%;
+    border-radius: 50%;
+    overflow: hidden;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    box-shadow: 
+        0 20px 60px rgba(0, 123, 255, 0.25),
+        0 0 0 10px rgba(255, 255, 255, 0.5);
+    border: 6px solid rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+}
+
+.hero-doctor-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .hero-section {
+        padding: 4.5rem 2.5rem 3rem 2.5rem;
+        min-height: 80vh;
+    }
+
+    .hero-container {
+        gap: 2.5rem;
+        grid-template-columns: 1fr 0.8fr;
+    }
+
+    .hero-image-wrapper {
+        max-width: 380px;
+    }
+
+    .stat-number {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-section {
+        padding: 4rem 2rem 3rem 2rem;
+        min-height: auto;
+    }
+
+    .hero-container {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+
+    .hero-left {
+        order: 2;
+        text-align: center;
+    }
+
+    .hero-right {
+        order: 1;
+    }
+
+    .hero-text-content {
+        max-width: 100%;
+    }
+
+    .hero-main-heading {
+        font-size: 2.2rem;
+    }
+
+    .hero-subheading {
+        font-size: 1.05rem;
+        margin-bottom: 2rem;
+    }
+
+    .hero-cta-group {
+        justify-content: center;
+        margin-bottom: 2rem;
+    }
+
+    .hero-stats {
+        justify-content: center;
+        gap: 1.5rem;
+        padding-top: 1.5rem;
+    }
+
+    .stat-item {
+        text-align: center;
+    }
+
+    .hero-image-wrapper {
+        max-width: 340px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-section {
+        padding: 3.5rem 1.5rem 2.5rem 1.5rem;
+    }
+
+    .hero-container {
+        gap: 2rem;
+    }
+
+    .hero-main-heading {
+        font-size: 1.9rem;
+        margin-bottom: 1rem;
+    }
+
+    .hero-subheading {
+        font-size: 0.95rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .hero-cta-group {
+        flex-direction: column;
+        gap: 1rem;
+        margin-bottom: 1.8rem;
+    }
+
+    .hero-cta-primary,
+    .hero-cta-secondary {
+        width: 100%;
+        justify-content: center;
+        padding: 0.95rem 1.8rem;
+        font-size: 1rem;
+    }
+
+    .hero-stats {
+        gap: 1.2rem;
+        padding-top: 1.2rem;
+        flex-wrap: wrap;
+    }
+
+    .stat-number {
+        font-size: 1.6rem;
+    }
+
+    .stat-label {
+        font-size: 0.8rem;
+    }
+
+    .stat-divider {
+        height: 38px;
+    }
+
+    .hero-image-wrapper {
+        max-width: 280px;
+    }
+
+    .hero-image-circle {
+        border: 5px solid rgba(255, 255, 255, 0.8);
+        box-shadow: 
+            0 15px 40px rgba(0, 123, 255, 0.2),
+            0 0 0 8px rgba(255, 255, 255, 0.4);
+    }
+}
     </style>
 
     <!-- Fontawesome - for social media icons -->
@@ -1589,13 +1943,60 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero-section scroll-animate-scale">
-        <div class="hero-content">
-            <h1>Your Smile, Our Priority</h1>
-            <p>Experience exceptional dental care with our expert team. Advanced treatments in a comfortable, welcoming environment.</p>
-            <a href="#book" class="cta-button">Book Appointment</a>
+    <!-- Hero Section -->
+<section class="hero-section" id="home">
+    <div class="hero-container">
+        <!-- Left Content -->
+        <div class="hero-left">
+            <div class="hero-text-content">
+                <h1 class="hero-main-heading">
+                    Experience <span class="highlight-text">Better Dentistry</span>
+                </h1>
+                <p class="hero-subheading">
+                    Where precision meets comfort - Advanced care with rubber dam isolation, enhanced disinfection and superior magnification and illumination
+                </p>
+                <div class="hero-cta-group">
+                    <a href="#book" class="hero-cta-primary">Book Your Appointment Now</a>
+                    <a href="#treatments" class="hero-cta-secondary">
+                        Explore Treatments
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                    </a>
+                </div>
+                
+                <!-- Stats Section -->
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <h3 class="stat-number">15+</h3>
+                        <p class="stat-label">Years Experience</p>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item">
+                        <h3 class="stat-number">5000+</h3>
+                        <p class="stat-label">Happy Patients</p>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item">
+                        <h3 class="stat-number">98%</h3>
+                        <p class="stat-label">Success Rate</p>
+                    </div>
+                </div>
+            </div>
         </div>
-    </section>
+
+        <!-- Right Content - Image -->
+        <div class="hero-right">
+            <div class="hero-image-wrapper">
+                <div class="hero-image-circle">
+                    <img src="dr-ajith1.jpg" alt="Dr. Ajith Subramanian - Chief Dental Officer" class="hero-doctor-image">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End of Hero section -->
 
     <!-- Why choose us - TESTING -->
     <!-- Why Choose Us Section -->
