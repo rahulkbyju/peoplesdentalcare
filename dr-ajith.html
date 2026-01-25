@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr. Ajith Subramanian - Profile | People's Dental Care</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #007bff;
+            text-decoration: none;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #2c3e50;
+            font-size: 1rem;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #007bff;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #007bff;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .nav-toggle span {
+            width: 25px;
+            height: 3px;
+            background: #2c3e50;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .nav-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .nav-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        /* Mobile Menu */
+        @media (max-width: 768px) {
+            .nav-toggle {
+                display: flex;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 70px;
+                right: -100%;
+                width: 280px;
+                height: calc(100vh - 70px);
+                background: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(10px);
+                flex-direction: column;
+                gap: 0;
+                padding: 2rem 0;
+                box-shadow: -2px 0 15px rgba(0, 0, 0, 0.1);
+                transition: right 0.3s ease;
+            }
+
+            .nav-menu.active {
+                right: 0;
+            }
+
+            .nav-menu li {
+                width: 100%;
+                text-align: center;
+                padding: 1rem 0;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            }
+
+            .nav-link::after {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-container {
+                padding: 1rem 1.5rem;
+            }
+
+            .nav-logo {
+                font-size: 1.3rem;
+            }
+        }
+
+        /* Profile Hero Section */
+        .profile-hero {
+            padding: 8rem 2rem 4rem 2rem;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(0, 123, 255, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .profile-hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 400px 1fr;
+            gap: 4rem;
+            align-items: start;
+            position: relative;
+            z-index: 1;
+        }
+
+        .profile-image-section {
+            position: sticky;
+            top: 100px;
+        }
+
+        .profile-image-wrapper {
+            width: 100%;
+            max-width: 400px;
+            aspect-ratio: 1;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 123, 255, 0.2);
+            border: 8px solid #ffffff;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .profile-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .profile-content-section {
+            background: #ffffff;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        .profile-header {
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid #f8f9fa;
+        }
+
+        .profile-name {
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: #2c3e50;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .profile-title {
+            font-size: clamp(1.2rem, 2vw, 1.5rem);
+            color: #007bff;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .profile-credentials {
+            font-size: 1.1rem;
+            color: #6c757d;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .profile-experience {
+            display: inline-block;
+            padding: 0.6rem 1.5rem;
+            background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+            color: #ffffff;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+        }
+
+        .profile-about {
+            margin-top: 2rem;
+        }
+
+        .profile-about h2 {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            color: #2c3e50;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .profile-paragraph {
+            font-size: 1.1rem;
+            color: #495057;
+            line-height: 1.9;
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        .profile-cta {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 2px solid #f8f9fa;
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #ffffff;
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            border: none;
+            border-radius: 50px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 123, 255, 0.4);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(0, 123, 255, 0.5);
+        }
+
+        .cta-button-secondary {
+            background: transparent;
+            color: #007bff;
+            border: 2px solid #007bff;
+            box-shadow: none;
+        }
+
+        .cta-button-secondary:hover {
+            background: #007bff;
+            color: #ffffff;
+        }
+
+        /* Specialties Section */
+        .specialties-section {
+            padding: 3rem;
+            background: #f8f9fa;
+            border-radius: 15px;
+            margin-top: 2rem;
+        }
+
+        .specialties-section h3 {
+            font-size: 1.5rem;
+            color: #2c3e50;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .specialties-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .specialty-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .specialty-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 15px rgba(0, 123, 255, 0.15);
+        }
+
+        .specialty-icon {
+            font-size: 1.5rem;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+            color: #ffffff;
+            border-radius: 10px;
+            flex-shrink: 0;
+        }
+
+        .specialty-text {
+            font-size: 1rem;
+            color: #495057;
+            font-weight: 500;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1a1a1a;
+            color: #ffffff;
+            padding: 3rem 2rem 1.5rem 2rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: #007bff;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: #b0b0b0;
+            line-height: 1.8;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #007bff;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-icon {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            color: #ffffff;
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            background: #007bff;
+            transform: translateY(-5px);
+        }
+
+        .location-info {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .location-info span {
+            font-size: 1.2rem;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 968px) {
+            .profile-hero-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .profile-image-section {
+                position: relative;
+                top: 0;
+            }
+
+            .profile-image-wrapper {
+                max-width: 350px;
+                margin: 0 auto;
+            }
+
+            .profile-content-section {
+                padding: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .profile-hero {
+                padding: 6rem 1.5rem 3rem 1.5rem;
+            }
+
+            .profile-content-section {
+                padding: 2rem;
+            }
+
+            .profile-header {
+                margin-bottom: 1.5rem;
+                padding-bottom: 1.5rem;
+            }
+
+            .profile-cta {
+                margin-top: 2rem;
+                padding-top: 1.5rem;
+            }
+
+            .specialties-section {
+                padding: 2rem;
+            }
+
+            .specialties-list {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .footer {
+                padding: 2rem 1.5rem 1rem 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .profile-hero {
+                padding: 5rem 1rem 2.5rem 1rem;
+            }
+
+            .profile-image-wrapper {
+                max-width: 280px;
+            }
+
+            .profile-content-section {
+                padding: 1.5rem;
+            }
+
+            .profile-paragraph {
+                font-size: 1rem;
+            }
+
+            .profile-cta {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .cta-button,
+            .cta-button-secondary {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .specialties-section {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+
+    <!-- Fontawesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">People's Dental Care</a>
+            <ul class="nav-menu">
+                <li><a href="index.html#home" class="nav-link">Home</a></li>
+                <li><a href="index.html#team" class="nav-link">Our Team</a></li>
+                <li><a href="index.html#testimonials" class="nav-link">Testimonials</a></li>
+                <li><a href="index.html#treatments" class="nav-link">Treatments</a></li>
+                <li><a href="index.html#contact" class="nav-link">Contact Us</a></li>
+            </ul>
+            <div class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Profile Hero Section -->
+    <section class="profile-hero">
+        <div class="profile-hero-container">
+            <!-- Left: Image -->
+            <div class="profile-image-section">
+                <div class="profile-image-wrapper">
+                    <img src="dr-ajith1.jpg" alt="Dr. Ajith Subramanian">
+                </div>
+            </div>
+
+            <!-- Right: Content -->
+            <div class="profile-content-section">
+                <div class="profile-header">
+                    <h1 class="profile-name">Dr. Ajith K.S</h1>
+                    <p class="profile-title">Chief Dental Officer & Cosmetic Dentistry Specialist</p>
+                    <p class="profile-credentials">BDS, MDS (Prosthodontics), Fellowship in Cosmetic Dentistry</p>
+                    <span class="profile-experience">15+ Years of Excellence in Dental Care</span>
+                </div>
+
+                <div class="profile-about">
+                    <h2>About Dr. Ajith</h2>
+                    <p class="profile-paragraph">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    </p>
+                    <p class="profile-paragraph">
+                        Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet.
+                    </p>
+                </div>
+
+                <!-- Specialties -->
+                <div class="specialties-section">
+                    <h3>Areas of Expertise</h3>
+                    <div class="specialties-list">
+                        <div class="specialty-item">
+                            <div class="specialty-icon">😁</div>
+                            <span class="specialty-text">Smile Makeovers</span>
+                        </div>
+                        <div class="specialty-item">
+                            <div class="specialty-icon">✨</div>
+                            <span class="specialty-text">Porcelain Veneers</span>
+                        </div>
+                        <div class="specialty-item">
+                            <div class="specialty-icon">🦷</div>
+                            <span class="specialty-text">Dental Implants</span>
+                        </div>
+                        <div class="specialty-item">
+                            <div class="specialty-icon">💎</div>
+                            <span class="specialty-text">Cosmetic Dentistry</span>
+                        </div>
+                        <div class="specialty-item">
+                            <div class="specialty-icon">🔬</div>
+                            <span class="specialty-text">Advanced Prosthodontics</span>
+                        </div>
+                        <div class="specialty-item">
+                            <div class="specialty-icon">⚡</div>
+                            <span class="specialty-text">Full Mouth Rehabilitation</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CTA Buttons -->
+                <div class="profile-cta">
+                    <a href="https://practice.hypha.care/branch-catalogue?branch=152&org=149" class="cta-button">Book Appointment with Dr. Ajith</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="footer-container">
+            <!-- About Section -->
+            <div class="footer-section">
+                <h3>People's Dental Care</h3>
+                <p>Your trusted partner in dental health. Providing exceptional care with advanced technology and a compassionate approach.</p>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/peoplesdentalcare" class="social-icon" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="https://www.instagram.com/peoples_dental.care" class="social-icon" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="social-icon" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html#home">Home</a></li>
+                    <li><a href="index.html#team">Our Team</a></li>
+                    <li><a href="index.html#testimonials">Testimonials</a></li>
+                    <li><a href="index.html#treatments">Treatments</a></li>
+                    <li><a href="index.html#book">Book Appointment</a></li>
+                </ul>
+            </div>
+
+            <!-- Location & Contact -->
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <div class="location-info">
+                    <span>📍</span>
+                    <p>Ground floor,<br>Panchayath Bus Stand,<br>Kadampazhipuram,<br>Palakkad, Kerala.</p>
+                </div>
+                <div class="location-info">
+                    <span>📞</span>
+                    <p>+91-90611 99572</p>
+                </div>
+                <div class="location-info">
+                    <span>✉️</span>
+                    <p>info@peoplesdentalcare.com</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 Peoples Dental Care. All rights reserved. | Privacy Policy | Terms of Service</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const navToggle = document.querySelector('.nav-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+
+        navToggle.addEventListener('click', () => {
+            navToggle.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Close menu when clicking on a link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                navToggle.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>
