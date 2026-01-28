@@ -723,89 +723,217 @@
         }
 
         /* Footer */
-        .footer {
-            background: #1a1a1a;
-            color: #ffffff;
-            padding: 3rem 2rem 1.5rem 2rem;
-        }
+        /* Footer */
+.footer {
+    background: #1a1a1a;
+    color: #ffffff;
+    padding: 3rem 2rem 1.5rem 2rem;
+}
 
-        .footer-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
-            margin-bottom: 2rem;
-        }
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 3rem;
+    margin-bottom: 2rem;
+}
 
-        .footer-section h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1.5rem;
-            color: #007bff;
-        }
+.footer-section h3 {
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
+    color: #007bff;
+}
 
-        .footer-section p,
-        .footer-section a {
-            color: #b0b0b0;
-            line-height: 1.8;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
+.footer-section p,
+.footer-section a {
+    color: #b0b0b0;
+    line-height: 1.8;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
 
-        .footer-section a:hover {
-            color: #007bff;
-        }
+.footer-section a:hover {
+    color: #007bff;
+}
 
-        .footer-links {
-            list-style: none;
-        }
+.footer-links {
+    list-style: none;
+}
 
-        .footer-links li {
-            margin-bottom: 0.8rem;
-        }
+.footer-links li {
+    margin-bottom: 0.8rem;
+}
 
-        .social-icons {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
+.social-icons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
 
-        .social-icon {
-            width: 45px;
-            height: 45px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.3rem;
-            color: #ffffff;
-            transition: all 0.3s ease;
-        }
+.social-icon {
+    width: 45px;
+    height: 45px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    color: #ffffff;
+    transition: all 0.3s ease;
+}
 
-        .social-icon:hover {
-            background: #007bff;
-            transform: translateY(-5px);
-        }
+.social-icon:hover {
+    background: #007bff;
+    transform: translateY(-5px);
+}
 
-        .location-info {
-            display: flex;
-            align-items: flex-start;
-            gap: 0.8rem;
-            margin-bottom: 1rem;
-        }
+.location-info {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    margin-bottom: 1rem;
+}
 
-        .location-info span {
-            font-size: 1.2rem;
-        }
+.location-info span {
+    font-size: 1.2rem;
+}
 
-        .footer-bottom {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: #6c757d;
-            font-size: 0.9rem;
-        }
+/* Contact Section with Map */
+.footer-contact-section {
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-info-wrapper {
+    margin-bottom: 1.5rem;
+}
+
+.map-container {
+    width: 100%;
+    height: 220px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.2);
+    background: #2c3e50;
+    margin-top: 0.5rem;
+}
+
+.map-container iframe {
+    display: block;
+    width: 100%;
+    height: 100%;
+    filter: brightness(0.95) contrast(1.05);
+    transition: filter 0.3s ease;
+}
+
+.map-container:hover iframe {
+    filter: brightness(1) contrast(1);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    color: #6c757d;
+    font-size: 0.9rem;
+}
+
+/* Desktop: Side-by-side layout for contact section */
+@media (min-width: 1024px) {
+    .footer-container {
+        grid-template-columns: 1.2fr 0.8fr 1.5fr;
+    }
+    
+    .footer-contact-section {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto 1fr;
+        gap: 0;
+    }
+    
+    .map-container {
+        height: 250px;
+        margin-top: 1rem;
+    }
+}
+
+/* Large Desktop: Better spacing */
+@media (min-width: 1200px) {
+    .footer-contact-section {
+        display: grid;
+        grid-template-columns: 1fr 1.3fr;
+        grid-template-rows: auto 1fr;
+        gap: 1.5rem;
+        grid-template-areas: 
+            "heading heading"
+            "contact map";
+    }
+    
+    .footer-contact-section h3 {
+        grid-area: heading;
+    }
+    
+    .contact-info-wrapper {
+        grid-area: contact;
+        margin-bottom: 0;
+    }
+    
+    .map-container {
+        grid-area: map;
+        height: 100%;
+        min-height: 200px;
+        margin-top: 0;
+    }
+}
+
+/* Tablet */
+@media (max-width: 1023px) {
+    .footer-container {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2.5rem;
+    }
+    
+    .map-container {
+        height: 200px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .footer-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .footer {
+        padding: 2rem 1.5rem 1rem 1.5rem;
+    }
+    
+    .map-container {
+        height: 200px;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer {
+        padding: 2rem 1rem 1rem 1rem;
+    }
+    
+    .map-container {
+        height: 180px;
+        border-radius: 10px;
+    }
+    
+    .location-info {
+        gap: 0.6rem;
+    }
+    
+    .location-info span {
+        font-size: 1.1rem;
+    }
+}
 
         /* Responsive Design for Book Appointment & Footer */
         @media (max-width: 768px) {
@@ -2430,33 +2558,34 @@
 
     <!-- Footer start -->
     <footer class="footer" id="contact">
-        <div class="footer-container">
-            <!-- About Section -->
-            <div class="footer-section">
-                <h3>People's Dental Care</h3>
-                <p>Your trusted partner in dental health. Providing exceptional care with advanced technology and a compassionate approach.</p>
-                <div class="social-icons">
-                    <a href="https://www.facebook.com/peoplesdentalcare" class="social-icon" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
-                    <a href="https://www.instagram.com/peoples_dental.care" class="social-icon" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="#" class="social-icon" aria-label="Twitter"><i class="fa-brands fa-youtube"></i></a>
-                </div>
+    <div class="footer-container">
+        <!-- About Section -->
+        <div class="footer-section">
+            <h3>People's Dental Care</h3>
+            <p>Your trusted partner in dental health. Providing exceptional care with advanced technology and a compassionate approach.</p>
+            <div class="social-icons">
+                <a href="https://www.facebook.com/peoplesdentalcare" class="social-icon" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+                <a href="https://www.instagram.com/peoples_dental.care" class="social-icon" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" class="social-icon" aria-label="Twitter"><i class="fa-brands fa-youtube"></i></a>
             </div>
+        </div>
 
-            <!-- Quick Links -->
-            <div class="footer-section">
-                <h3>Quick Links</h3>
-                <ul class="footer-links">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#team">Our Team</a></li>
-                    <li><a href="#testimonials">Testimonials</a></li>
-                    <li><a href="#courses">Courses</a></li>
-                    <li><a href="#book">Book Appointment</a></li>
-                </ul>
-            </div>
+        <!-- Quick Links -->
+        <div class="footer-section">
+            <h3>Quick Links</h3>
+            <ul class="footer-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#team">Our Team</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#courses">Courses</a></li>
+                <li><a href="#book">Book Appointment</a></li>
+            </ul>
+        </div>
 
-            <!-- Location & Contact -->
-            <div class="footer-section">
-                <h3>Contact Us</h3>
+        <!-- Location & Contact with Map -->
+        <div class="footer-section footer-contact-section">
+            <h3>Contact Us</h3>
+            <div class="contact-info-wrapper">
                 <div class="location-info">
                     <span>📍</span>
                     <p>Ground floor,<br>Panchayath Bus Stand,<br>Kadampazhipuram,<br>Palakkad, Kerala.</p>
@@ -2470,13 +2599,26 @@
                     <p>info@peoplesdentalcare.com</p>
                 </div>
             </div>
+            
+            <!-- Google Maps -->
+            <div class="map-container">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.1937582706037!2d76.44344730963961!3d10.872862789237113!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba7d7e400000001%3A0xd857bdd6cad9bb28!2sPeople&#39;s%20Dental%20Care%2C%20Kadampazhipuram!5e0!3m2!1sen!2sin!4v1769576619242!5m2!1sen!2sin" 
+                    width="100%" 
+                    height="100%" 
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
         </div>
+    </div>
 
-        <div class="footer-bottom">
-            <p>&copy; 2025 Peoples Dental Care. All rights reserved. | Privacy Policy | Terms of Service</p>
-        </div>
-    </footer>
-
+    <div class="footer-bottom">
+        <p>&copy; 2025 Peoples Dental Care. All rights reserved. | Privacy Policy | Terms of Service</p>
+    </div>
+</footer>
     <!-- Footer end -->
 
     <script>
