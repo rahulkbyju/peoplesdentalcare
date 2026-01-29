@@ -2051,6 +2051,279 @@
             0 0 0 8px rgba(255, 255, 255, 0.4);
     }
 }
+
+    /* Videos section */
+    /* YouTube Videos Section */
+.videos-section {
+    padding: 5rem 2rem;
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.videos-section::before {
+    content: '';
+    position: absolute;
+    top: -30%;
+    left: -10%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(0, 123, 255, 0.05) 0%, transparent 70%);
+    border-radius: 50%;
+}
+
+.videos-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+.carousel-wrapper {
+    position: relative;
+    margin-top: 3rem;
+    padding: 0 4rem;
+}
+
+.carousel-container {
+    overflow: hidden;
+    border-radius: 15px;
+}
+
+.carousel-track {
+    display: flex;
+    gap: 2rem;
+    transition: transform 0.5s ease;
+}
+
+.video-card {
+    flex: 0 0 calc(33.333% - 1.35rem);
+    background: #ffffff;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.video-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 30px rgba(0, 123, 255, 0.2);
+}
+
+.video-wrapper {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+    background: #000000;
+}
+
+.video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.video-info {
+    padding: 1.5rem;
+}
+
+.video-title {
+    font-size: 1.2rem;
+    color: #2c3e50;
+    font-weight: 700;
+    margin-bottom: 0.8rem;
+    line-height: 1.3;
+}
+
+.video-description {
+    font-size: 0.95rem;
+    color: #6c757d;
+    line-height: 1.6;
+}
+
+/* Carousel Buttons */
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    background: #ffffff;
+    border: 2px solid #007bff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.carousel-btn:hover {
+    background: #007bff;
+    transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-btn:hover svg {
+    stroke: #ffffff;
+}
+
+.carousel-btn svg {
+    stroke: #007bff;
+    transition: stroke 0.3s ease;
+}
+
+.carousel-btn-prev {
+    left: 0;
+}
+
+.carousel-btn-next {
+    right: 0;
+}
+
+.carousel-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.carousel-btn:disabled:hover {
+    background: #ffffff;
+    transform: translateY(-50%) scale(1);
+}
+
+/* Carousel Indicators */
+.carousel-indicators {
+    display: flex;
+    justify-content: center;
+    gap: 0.8rem;
+    margin-top: 2.5rem;
+}
+
+.indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #dee2e6;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.indicator:hover {
+    background: #007bff;
+    transform: scale(1.2);
+}
+
+.indicator.active {
+    background: #007bff;
+    width: 32px;
+    border-radius: 6px;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .video-card {
+        flex: 0 0 calc(33.333% - 1.35rem);
+    }
+}
+
+@media (max-width: 968px) {
+    .videos-section {
+        padding: 4rem 1.5rem;
+    }
+
+    .carousel-wrapper {
+        padding: 0 3.5rem;
+    }
+
+    .video-card {
+        flex: 0 0 calc(50% - 1rem);
+    }
+
+    .carousel-btn {
+        width: 45px;
+        height: 45px;
+    }
+}
+
+@media (max-width: 768px) {
+    .videos-section {
+        padding: 3rem 1.5rem;
+    }
+
+    .carousel-wrapper {
+        padding: 0 3rem;
+    }
+
+    .video-card {
+        flex: 0 0 100%;
+    }
+
+    .carousel-track {
+        gap: 1.5rem;
+    }
+
+    .carousel-btn {
+        width: 40px;
+        height: 40px;
+    }
+
+    .carousel-btn svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .video-info {
+        padding: 1.2rem;
+    }
+
+    .video-title {
+        font-size: 1.1rem;
+    }
+
+    .video-description {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .videos-section {
+        padding: 2.5rem 1rem;
+    }
+
+    .carousel-wrapper {
+        padding: 0 2.5rem;
+    }
+
+    .carousel-btn {
+        width: 35px;
+        height: 35px;
+    }
+
+    .carousel-btn-prev {
+        left: -5px;
+    }
+
+    .carousel-btn-next {
+        right: -5px;
+    }
+
+    .video-info {
+        padding: 1rem;
+    }
+
+    .indicator {
+        width: 10px;
+        height: 10px;
+    }
+
+    .indicator.active {
+        width: 28px;
+    }
+}
+    /* End of Videos section */
     </style>
 
     <!-- Fontawesome - for social media icons -->
@@ -2526,7 +2799,129 @@
             </div>
         </div>
     </section>
+    <!-- Videos -->
+    <!-- YouTube Videos Section -->
+<section class="videos-section" id="videos">
+    <div class="videos-container">
+        <div class="section-header">
+            <h2>Expert Dental Tips from Dr. Ajith</h2>
+            <p>Watch our educational videos to learn more about dental care and oral hygiene</p>
+        </div>
 
+        <div class="carousel-wrapper">
+            <button class="carousel-btn carousel-btn-prev" aria-label="Previous videos">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="15 18 9 12 15 6"></polyline>
+                </svg>
+            </button>
+
+            <div class="carousel-container">
+                <div class="carousel-track">
+                    <!-- Video Card 1 -->
+                    <div class="video-card">
+                        <div class="video-wrapper">
+                            <iframe 
+                                src="https://www.youtube.com/embed/dLZ6CRPHcj4" 
+                                title="Dental Care Video 1"
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                        <div class="video-info">
+                            <h3 class="video-title">ഒരു പല്ലിന്റെ വില</h3>
+                            <p class="video-description">Dr. Ajith, founder of People Dental Care, emphasizes the importance of prioritizing dental health, questioning whether we tend to neglect tooth issues until they become severely painful.</p>
+                        </div>
+                    </div>
+
+                    <!-- Video Card 2 -->
+                    <div class="video-card">
+                        <div class="video-wrapper">
+                            <iframe 
+                                src="https://www.youtube.com/embed/vcFVu5GrbBM" 
+                                title="Dental Care Video 2"
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                        <div class="video-info">
+                            <h3 class="video-title">പല്ലുതേക്കുമ്പോൾ രക്തം വരുന്നത്</h3>
+                            <p class="video-description">നിങ്ങളുടെ മോണ ശരിക്കും ആരോഗ്യമുള്ളതാണോ? എങ്ങനെ അറിയാം? ദന്ത ഡോക്ടറായ ഡോ. അജിത്ത് സംസാരിക്കുന്നു.</p>
+                        </div>
+                    </div>
+
+                    <!-- Video Card 3 -->
+                    <div class="video-card">
+                        <div class="video-wrapper">
+                            <iframe 
+                                src="https://www.youtube.com/embed/xFeenPdVX0U" 
+                                title="Dental Care Video 3"
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                        <div class="video-info">
+                            <h3 class="video-title">Dr Ajith Guest Launch Epi 12 to make your teeth shine like pearls</h3>
+                            <p class="video-description">Which paste is the best, how long to brush, the importance of brushing at night, what is flossing, how to brush and floss properly, and how to use mouthwash.. Answers to questions like these. Renowned dentist Dr Ajith speaks</p>
+                        </div>
+                    </div>
+
+                    <!-- Video Card 4 -->
+                    <div class="video-card">
+                        <div class="video-wrapper">
+                            <iframe 
+                                src="https://www.youtube.com/embed/O6mZif8OOq0" 
+                                title="Dental Care Video 4"
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                        <div class="video-info">
+                            <h3 class="video-title">There is a better way than putting a cap on your teeth. What is it?</h3>
+                            <p class="video-description">Talking about the different types of beautiful caps that can be put on your teeth! There are caps that others will not know that you have a cap on!</p>
+                        </div>
+                    </div>
+
+                    <!-- Video Card 5 -->
+                    <div class="video-card">
+                        <div class="video-wrapper">
+                            <iframe 
+                                src="YOUTUBE_EMBED_URL_5" 
+                                title="Dental Care Video 5"
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                        <div class="video-info">
+                            <h3 class="video-title">Root Canal Misconceptions Dispelled</h3>
+                            <p class="video-description">RCT is a treatment that helps the tooth continue to perform its function even if it is damaged and dies, in other words, it gives the tooth a second chance or a second life.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="carousel-btn carousel-btn-next" aria-label="Next videos">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Carousel Indicators (Optional) -->
+        <div class="carousel-indicators">
+            <span class="indicator active" data-slide="0"></span>
+            <span class="indicator" data-slide="1"></span>
+            <span class="indicator" data-slide="2"></span>
+            <span class="indicator" data-slide="3"></span>
+            <span class="indicator" data-slide="4"></span>
+        </div>
+    </div>
+</section>
+    <!-- End of videos section -->
     <!-- Book Appointment Section -->
     <section class="book-appointment-section scroll-animate-scale" id="book">
         <div class="book-container">
@@ -2555,6 +2950,8 @@
             </form>
         </div>
     </section>
+
+    
 
     <!-- Footer start -->
     <footer class="footer" id="contact">
@@ -2739,6 +3136,93 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* End of script for Specialties section */
+
+    /* Videos section script */
+    // YouTube Carousel Functionality
+document.addEventListener('DOMContentLoaded', () => {
+    const track = document.querySelector('.carousel-track');
+    const cards = document.querySelectorAll('.video-card');
+    const prevBtn = document.querySelector('.carousel-btn-prev');
+    const nextBtn = document.querySelector('.carousel-btn-next');
+    const indicators = document.querySelectorAll('.indicator');
+    
+    let currentIndex = 0;
+    let cardsPerView = 3;
+    
+    // Update cards per view based on screen size
+    function updateCardsPerView() {
+        const width = window.innerWidth;
+        if (width <= 768) {
+            cardsPerView = 1;
+        } else if (width <= 968) {
+            cardsPerView = 2;
+        } else {
+            cardsPerView = 3;
+        }
+    }
+    
+    // Calculate max index
+    function getMaxIndex() {
+        return Math.max(0, cards.length - cardsPerView);
+    }
+    
+    // Update carousel position
+    function updateCarousel() {
+        const cardWidth = cards[0].offsetWidth;
+        const gap = parseFloat(getComputedStyle(track).gap);
+        const offset = -(currentIndex * (cardWidth + gap));
+        track.style.transform = `translateX(${offset}px)`;
+        
+        // Update button states
+        prevBtn.disabled = currentIndex === 0;
+        nextBtn.disabled = currentIndex >= getMaxIndex();
+        
+        // Update indicators
+        indicators.forEach((indicator, index) => {
+            indicator.classList.toggle('active', index === currentIndex);
+        });
+    }
+    
+    // Previous button
+    prevBtn.addEventListener('click', () => {
+        if (currentIndex > 0) {
+            currentIndex--;
+            updateCarousel();
+        }
+    });
+    
+    // Next button
+    nextBtn.addEventListener('click', () => {
+        if (currentIndex < getMaxIndex()) {
+            currentIndex++;
+            updateCarousel();
+        }
+    });
+    
+    // Indicator clicks
+    indicators.forEach((indicator, index) => {
+        indicator.addEventListener('click', () => {
+            currentIndex = Math.min(index, getMaxIndex());
+            updateCarousel();
+        });
+    });
+    
+    // Handle window resize
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+            updateCardsPerView();
+            currentIndex = Math.min(currentIndex, getMaxIndex());
+            updateCarousel();
+        }, 250);
+    });
+    
+    // Initialize
+    updateCardsPerView();
+    updateCarousel();
+});
+    /* End of Videos section script */
     </script>
 </body>
 </html>
